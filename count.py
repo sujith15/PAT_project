@@ -1,10 +1,11 @@
 import os
 from git import Repo
-import sys
+import csv
 import re
 
-giturl="https://github.com/open-mpi/ompi"
-Repo.clone_from(giturl, "clone_files")
+
+# giturl="https://github.com/open-mpi/ompi"
+# Repo.clone_from(giturl, "clone_files")
 
 def is_file(filepath):
     print(filepath)
@@ -19,7 +20,7 @@ def is_file(filepath):
     return assert_count
 
 
-def is_directory(f):
+def is_directory(dir,f):
     list = []
     for filename in os.listdir(f):
         filepath = os.path.join(f, filename)
@@ -27,18 +28,23 @@ def is_directory(f):
         if os.path.isfile(filepath):
             assert_count = is_file(filepath)
             if assert_count != 0:
-                list.append(filepath + " " + str(assert_count))
+                list1=[filepath,dir,filename,assert_count]
+                list.append(list1)
         elif os.path.isdir(filepath):
-            list = is_directory(filepath)
+            list = is_directory(dir,filepath)
 
     return list
 
 
-with open('test_files.txt', 'w', encoding='utf8') as textfile:
+with open('assert_count.csv', 'w', encoding='utf8',newline='') as csvfile:
     for root, dirs, files in os.walk(r'clone_files'):
         print("root is..", root)
         print("dirs is...", dirs)
         print("files is..", files)
+        header=['Path', 'Directory','File Name','Assert count']
+        writer = csv.writer(csvfile)
+        writer.writerow(header)
+
         for dir in dirs:
             print("dir is...", dir)
             test_path = root + "/" + dir
@@ -47,14 +53,14 @@ with open('test_files.txt', 'w', encoding='utf8') as textfile:
                 print(f)
                 if os.path.isdir(f):
 
-                    list = is_directory(f)
-                    for ch in list:
-                        textfile.write(ch)
-                        textfile.write('\n')
+                    list = is_directory(dir,f)
+
+                    writer.writerows(list)
+
                 elif os.path.isfile(f):
                     assert_count = is_file(f)
                     if assert_count != 0:
-                        textfile.write(f + " " + str(assert_count))
-                        textfile.write('\n')
+                        writer.writerow([f,"",f,assert_count])
+
 
         break
