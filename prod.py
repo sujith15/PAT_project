@@ -27,10 +27,17 @@ def is_file(filepath):
                 assert_count = assert_count + 1
 
         for line in lines:
-            if re.search(r'^.*.DEBUG\(.*', line):
+            # if re.search(r'^.*.DEBUG\(.*', line):
+            if line.startswith("#if") and line.find("DEBUG") > 0:
+
+                print(line)
+                print("Holla")
                 list2.append(lines.index(line)+1)
+                lines[lines.index(line)]=""
                 print(line)
                 debug_count = debug_count + 1
+            # if debug_count > 0:
+            #     break
 
     else:
         return [],[],-1, -1
