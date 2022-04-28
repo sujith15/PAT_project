@@ -13,6 +13,8 @@ def is_file(filepath):
     print(filepath)
     assert_count = 0
     debug_count = 0
+    list1 = []
+    list2 = []
     if ".DS_Store" not in filepath and (filepath.endswith(".c") or filepath.endswith(".h") or filepath.endswith(".sh")):
         file = open(filepath, 'r', encoding='utf-8')
         # assert_count = 0 if ".DS_Store" not in filepath and (filepath.endswith(".c") or filepath.endswith(".h") or
@@ -21,16 +23,18 @@ def is_file(filepath):
 
         for line in lines:
             if re.search(r'^\s*.(assert\(.*\))', line):
+                list1.append(lines.index(line)+1)
                 assert_count = assert_count + 1
 
         for line in lines:
             if re.search(r'^.*.DEBUG\(.*', line):
+                list2.append(lines.index(line)+1)
                 print(line)
                 debug_count = debug_count + 1
 
     else:
-        return -1, -1
-    return assert_count, debug_count
+        return [],[],-1, -1
+    return list1, list2, assert_count, debug_count
 
 
 def is_directory(dir, subdir, f):
@@ -40,10 +44,10 @@ def is_directory(dir, subdir, f):
         print(filepath)
         if os.path.isfile(filepath):
             print("hello")
-            assert_count, debug_count = is_file(filepath)
+            list3, list4, assert_count, debug_count = is_file(filepath)
             if assert_count != -1 or debug_count != -1:
                 # if assert_count != 0:
-                list1 = [filepath, dir, subdir, filename, assert_count, debug_count]
+                list1 = [filepath, dir, subdir, filename, assert_count, list3, debug_count, list4]
                 list.append(list1)
         elif os.path.isdir(filepath):
 
@@ -57,7 +61,8 @@ with open('prod_assert_count.csv', 'w', encoding='utf8', newline='') as csvfile:
         print("root is..", root)
         print("dirs is...", dirs)
         print("files is..", files)
-        header = ['Path', 'Directory', 'Sub Directory', 'File Name', 'Assert count', 'Debug count']
+        header = ['Path', 'Directory', 'Sub Directory', 'File Name', 'Assert count', 'Assert Location', 'Debug count',
+                  'Debug Location']
         writer = csv.writer(csvfile)
         writer.writerow(header)
 
@@ -76,9 +81,9 @@ with open('prod_assert_count.csv', 'w', encoding='utf8', newline='') as csvfile:
 
                     elif os.path.isfile(f):
                         if f.endswith(".c") or f.endswith(".h") or f.endswith(".sh"):
-                            assert_count, debug_count = is_file(f)
+                            list5, list6, assert_count, debug_count = is_file(f)
                             if assert_count != -1 or debug_count != -1:
-                                writer.writerow([f, dir, subdir, subdir, assert_count, debug_count])
+                                writer.writerow([f, dir, subdir, subdir, assert_count, list5, debug_count, list6])
 
         break
 
@@ -103,7 +108,6 @@ plt.ylim(0, 200)
 
 plt.savefig("prod_assert_plot.png")
 plt.show()
-
 
 data = pd.read_csv("prod_assert_count.csv")
 dirs = data["Directory"].unique()
