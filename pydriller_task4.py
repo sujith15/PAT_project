@@ -6,6 +6,7 @@ with open('assert_count.csv') as csv_file:
     test_files = []
     for row in reader:
         test_files.append(row['File Name'])
+
 count = 0
 files = []
 d = {}
@@ -16,7 +17,7 @@ for commit in Repository('https://github.com/open-mpi/ompi', filepath="test").tr
         if file.filename in test_files and file.filename not in files:
             files.append(file.filename)
             count = count + 1
-            d[file.filename] = [[], [], [0],[0]]
+            d[file.filename] = [[], [], [0], [0]]
             if commit.author.name not in d[file.filename][0]:
                 d[file.filename][0].append(commit.author.name)
                 d[file.filename][3][0] += 1
