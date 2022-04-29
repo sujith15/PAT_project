@@ -58,7 +58,11 @@ with open('pydriller_authorcount.csv','w') as csvfile:
     for key,value in authorCommitCount.items():
         csvwriterAuthors.writerow(([key,value]))
 
-
+with open('pydriller_commitcount.csv','w') as csvfile:
+    csvwriterYears = csv.writer(csvfile)
+    csvwriterYears.writerow(["Date","Count"])
+    for key,value in yearCommitCount.items():
+        csvwriterYears.writerow(([key,value]))
 # print(
 #     'The file {} was added by {} on {}, '
 #     'committed by on date {}'.format(
