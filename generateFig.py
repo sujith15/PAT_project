@@ -24,9 +24,10 @@ for b in a:
     xx[b['Author Name']] = b['Count']
 
 c = dict(sorted(xx.items(), key=lambda item: item[1], reverse=True))
-first5pairs = {k: c[k] for k in list(c)[1:6]}
+Top5Authors = {k: c[k] for k in list(c)[1:6]}
 
-plt.bar(first5pairs.keys(), first5pairs.values())
+plt.bar(Top5Authors.keys(), Top5Authors.values())
 plt.savefig('AuthorsCount.png')
 plt.show()
+
 
