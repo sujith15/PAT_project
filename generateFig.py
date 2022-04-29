@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import csv
 
 # d={}
-# with open('pydriller_authorcount.csv', 'r') as csvfile:
+# with open('author_count.csv', 'r') as csvfile:
 #     line = csv.reader(csvfile, delimiter=',')
 #
 #     for row in range(1,):
@@ -16,7 +16,7 @@ import csv
 #     if val not in temp:
 #         temp.append(val)
 #         res[key] = val
-data = pd.read_csv('pydriller_authorcount.csv')
+data = pd.read_csv('author_count.csv')
 
 a = data.to_dict('records')
 xx = {}

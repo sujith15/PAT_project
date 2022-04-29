@@ -52,13 +52,13 @@ with open(filename, 'w') as csvfile:
     for key, value in d.items():
         csvwriter.writerow([key, ','.join(value[0]), value[1][0], value[2][0], value[3][0]])
 
-with open('pydriller_authorcount.csv','w') as csvfile:
+with open('author_count.csv', 'w') as csvfile:
     csvwriterAuthors = csv.writer(csvfile)
     csvwriterAuthors.writerow(["Author Name","Count"])
     for key,value in authorCommitCount.items():
         csvwriterAuthors.writerow(([key,value]))
 
-with open('pydriller_commitcount.csv','w') as csvfile:
+with open('commit_count.csv', 'w') as csvfile:
     csvwriterYears = csv.writer(csvfile)
     csvwriterYears.writerow(["Date","Count"])
     for key,value in yearCommitCount.items():

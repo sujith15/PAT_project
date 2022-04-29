@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
 
-data = pd.read_csv('pydriller_commitcount.csv')
+data = pd.read_csv('commit_count.csv')
 
 a = data.to_dict('records')
 xx = {}
@@ -14,6 +14,9 @@ print(c)
 Top5Authors = {k: c[k] for k in list(c)[1:6]}
 
 plt.bar(Top5Authors.keys(), Top5Authors.values())
-plt.savefig('CommitCount.png')
+plt.xlabel('Year')
+plt.ylabel('No. of Commits')
+plt.title('COMMITS COUNT')
+plt.savefig('commit_count.png')
 plt.show()
 
