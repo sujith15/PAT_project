@@ -27,7 +27,10 @@ c = dict(sorted(xx.items(), key=lambda item: item[1], reverse=True))
 Top5Authors = {k: c[k] for k in list(c)[1:6]}
 
 plt.bar(Top5Authors.keys(), Top5Authors.values())
-plt.savefig('AuthorsCount.png')
+plt.xlabel('Author Name')
+plt.ylabel('No. of Commits')
+plt.title('TOP CONTRIBUTORS')
+plt.savefig('author_count.png')
 plt.show()
 
 
