@@ -43,7 +43,7 @@ with open(filename, 'w') as csvfile:
 
 # print(
 #     'The file {} was added by {} on {}, '
-#     'committed by {} on date {}'.format(
+#     'committed by on date {}'.format(
 #         filename,
 #         commit.author.name,
 #         commit.author_date,
