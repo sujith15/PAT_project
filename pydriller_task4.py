@@ -39,14 +39,8 @@ for commit in Repository('https://github.com/open-mpi/ompi', filepath="test").tr
             yearCommitCount[year] = 0
 
 
-
-# print('The file {} is created on {} by {}.'.format(file.filename,commit.author_date,commit.author.name))
-
-print(sum(yearCommitCount.values()))
-
 filename = 'pydriller_task4.csv'
 with open(filename, 'w') as csvfile:
-    # creating a csv writer object
     csvwriter = csv.writer(csvfile)
     csvwriter.writerow(["FileName", "List Of Authors", "Date Created", "Number of Commits", "Number of authors"])
     for key, value in d.items():
@@ -54,22 +48,13 @@ with open(filename, 'w') as csvfile:
 
 with open('author_count.csv', 'w') as csvfile:
     csvwriterAuthors = csv.writer(csvfile)
-    csvwriterAuthors.writerow(["Author Name","Count"])
-    for key,value in authorCommitCount.items():
-        csvwriterAuthors.writerow(([key,value]))
+    csvwriterAuthors.writerow(["Author Name", "Count"])
+    for key, value in authorCommitCount.items():
+        csvwriterAuthors.writerow(([key, value]))
 
 with open('commit_count.csv', 'w') as csvfile:
     csvwriterYears = csv.writer(csvfile)
-    csvwriterYears.writerow(["Date","Count"])
-    for key,value in yearCommitCount.items():
-        csvwriterYears.writerow(([key,value]))
-# print(
-#     'The file {} was added by {} on {}, '
-#     'committed by on date {}'.format(
-#         filename,
-#         commit.author.name,
-#         commit.author_date,
-#         commit.committer.name,
-#         commit.committer_date
-#     )
-# )
+    csvwriterYears.writerow(["Date", "Count"])
+    for key, value in yearCommitCount.items():
+        csvwriterYears.writerow(([key, value]))
+
