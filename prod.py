@@ -63,7 +63,7 @@ def is_directory(dir, subdir, f):
     return list
 
 
-with open('prod_assert_count.csv', 'w', encoding='utf8', newline='') as csvfile:
+with open('prod_count.csv', 'w', encoding='utf8', newline='') as csvfile:
     for root, dirs, files in os.walk(r'clone_files'):
         print("root is..", root)
         print("dirs is...", dirs)
@@ -94,7 +94,7 @@ with open('prod_assert_count.csv', 'w', encoding='utf8', newline='') as csvfile:
 
         break
 
-data = pd.read_csv("prod_assert_count.csv")
+data = pd.read_csv("prod_count.csv")
 dirs = data["Directory"].unique()
 dirs.sort()
 print(dirs)
@@ -109,14 +109,14 @@ x = dirs
 y = count
 plt.bar(x, y)
 plt.xlabel('Folders')
-plt.ylabel('Assert_count')
-plt.title('Data')
+plt.ylabel('Count')
+plt.title('ASSERT STATEMENTS COUNT(Production Files)')
 plt.ylim(0, 200)
 
 plt.savefig("prod_assert_plot.png")
 plt.show()
 
-data = pd.read_csv("prod_assert_count.csv")
+data = pd.read_csv("prod_count.csv")
 dirs = data["Directory"].unique()
 dirs.sort()
 print(dirs)
@@ -131,8 +131,8 @@ x = dirs
 y = count
 plt.bar(x, y)
 plt.xlabel('Folders')
-plt.ylabel('Debug_count')
-plt.title('Data')
+plt.ylabel('Count')
+plt.title('DEBUG STATEMENTS COUNT(Production Files)')
 plt.ylim(0, 200)
 
 plt.savefig("prod_debug_plot.png")
