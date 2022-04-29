@@ -84,9 +84,9 @@ y = []
 x = dirs
 y = count
 plt.barh(x, y)
-plt.xlabel('Assert count')
+plt.xlabel('Count')
 plt.ylabel('Folders')
-plt.title('Data')
+plt.title('ASSERT STATEMENTS COUNT')
 
-plt.savefig("assert_plot.png")
+plt.savefig("assert_count_plot.png")
 plt.show()
