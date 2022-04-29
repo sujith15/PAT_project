@@ -1,26 +1,32 @@
+import pandas as pd
 import matplotlib.pyplot as plt
 import csv
 
-d={}
-with open('pydriller_authorcount.csv', 'r') as csvfile:
-    line = csv.reader(csvfile, delimiter=',')
+# d={}
+# with open('pydriller_authorcount.csv', 'r') as csvfile:
+#     line = csv.reader(csvfile, delimiter=',')
+#
+#     for row in range(1,):
+#         d[line[row][0]]=int(line[row][1])
 
-    for row in line:
-        d[row[0]]=int(row[1])
-d.pop('Author Name')
 
-print(int(d['Rich Graham']))
 # temp = []
 # res = dict()
 # for key, val in d.items():
 #     if val not in temp:
 #         temp.append(val)
 #         res[key] = val
-print(d)
+data = pd.read_csv('pydriller_authorcount.csv')
 
-# plt.bar(d.keys(),d.values())
-# plt.show()
-# print(d)
+a = data.to_dict('records')
+xx = {}
+for b in a:
+    xx[b['Author Name']] = b['Count']
 
+c = dict(sorted(xx.items(), key=lambda item: item[1], reverse=True))
+first5pairs = {k: c[k] for k in list(c)[1:6]}
 
+plt.bar(first5pairs.keys(), first5pairs.values())
+plt.savefig('AuthorsCount.png')
+plt.show()
 
