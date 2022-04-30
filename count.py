@@ -62,19 +62,3 @@ with open('assert_count.csv', 'w', encoding='utf8', newline='') as csvfile:
                                 writer.writerow([f, dir, subdir, subdir, assert_count])
 
         break
-
-data = pd.read_csv("assert_count.csv")
-dirs = data["Sub Directory"]
-count = data["Assert count"]
-
-x = []
-y = []
-x = dirs
-y = count
-plt.barh(x, y)
-plt.xlabel('Count')
-plt.ylabel('Folders')
-plt.title('ASSERT STATEMENTS COUNT')
-
-plt.savefig("assert_count_plot.png")
-plt.show()
