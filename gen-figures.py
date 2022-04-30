@@ -21,6 +21,9 @@ plt.savefig("assert_count_plot.png")
 plt.show()
 
 
+
+
+
 data = pd.read_csv("prod_count.csv")
 dirs = data["Directory"].unique()
 dirs.sort()
