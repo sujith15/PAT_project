@@ -16,7 +16,7 @@ Top5Authors = {k: c[k] for k in list(c)[1:6]}
 plt.bar(Top5Authors.keys(), Top5Authors.values())
 plt.xlabel('Year')
 plt.ylabel('No. of Commits')
-plt.title('COMMITS COUNT')
+plt.title('Number of Commits in each year')
 plt.savefig('commit_count.png')
 plt.show()
 
