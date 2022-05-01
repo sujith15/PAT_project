@@ -21,7 +21,7 @@ plt.savefig("assert_count_plot.png")
 plt.show()
 
 fig, ax = plt.subplots()
-data['Sub Directory'].value_counts().plot(ax=ax, kind='bar', xlabel='Folders', ylabel='Count')
+data['Sub Directory'].value_counts().plot(ax=ax, kind='barh', xlabel='Folders', ylabel='Count')
 plt.title('TEST FILES COUNT')
 plt.savefig("testFiles_count_plot.png")
 plt.show()
