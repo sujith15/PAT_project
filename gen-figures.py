@@ -56,6 +56,7 @@ dirs.sort()
 count = data.groupby('Directory')['Debug count'].sum()
 
 
+
 x = []
 y = []
 x = dirs
@@ -68,6 +69,9 @@ plt.ylim(0, 200)
 
 plt.savefig("prod_debug_plot.png")
 plt.show()
+
+
+#Author count in test files
 
 data = pd.read_csv('author_count.csv')
 
@@ -87,6 +91,7 @@ plt.savefig('author_count.png')
 plt.show()
 plt.close()
 
+#Commit count in test files by Authors
 series = pd.read_csv('commit_count.csv', header=0, index_col=0, parse_dates=True)
 series.plot()
 plt.xlabel('Date')
