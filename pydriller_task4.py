@@ -13,9 +13,9 @@ mod = 0
 i = 0
 authorCommitCount = {}
 yearCommitCount = {}
-for commit in Repository('https://github.com/open-mpi/ompi', filepath="test").traverse_commits():
+for commit in Repository('https://github.com/open-mpi/ompi',filepath='test').traverse_commits():
     for file in commit.modified_files:
-        if file.filename in test_files and file.filename not in files:
+        if file.filename.endswith('.c') and file.filename not in files:
             files.append(file.filename)
             count = count + 1
             d[file.filename] = [[], [], [0], [0]]
@@ -38,7 +38,6 @@ for commit in Repository('https://github.com/open-mpi/ompi', filepath="test").tr
         else:
             yearCommitCount[year] = 0
 
-
 filename = 'pydriller_task4.csv'
 with open(filename, 'w') as csvfile:
     csvwriter = csv.writer(csvfile)
@@ -57,4 +56,3 @@ with open('commit_count.csv', 'w') as csvfile:
     csvwriterYears.writerow(["Date", "Count"])
     for key, value in yearCommitCount.items():
         csvwriterYears.writerow(([key, value]))
-
