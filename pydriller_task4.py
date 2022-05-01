@@ -11,8 +11,7 @@ files = []
 d = {}
 mod = 0
 i = 0
-authorCommitCount = {}
-yearCommitCount = {}
+
 for commit in Repository('https://github.com/open-mpi/ompi',filepath='test').traverse_commits():
     for file in commit.modified_files:
         if file.filename in test_files and file.filename not in files:
