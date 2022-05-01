@@ -5,6 +5,8 @@ import csv
 
 authorCommitCount = {}
 yearCommitCount = {}
+
+#Commits in test files
 for commit in Repository('https://github.com/open-mpi/ompi',filepath='test').traverse_commits():
     if commit.author.name in authorCommitCount.keys():
         authorCommitCount[commit.author.name] += 1
@@ -17,6 +19,8 @@ for commit in Repository('https://github.com/open-mpi/ompi',filepath='test').tra
         yearCommitCount[year] = 1
 
 print(sum(yearCommitCount.values()))
+
+#total number of authors
 with open('author_count.csv', 'w') as csvfile:
     csvwriterAuthors = csv.writer(csvfile)
     csvwriterAuthors.writerow(["Author Name", "Count"])
