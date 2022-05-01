@@ -82,7 +82,7 @@ Top5Authors = {k: c[k] for k in list(c)[0:5]}
 plt.bar(Top5Authors.keys(), Top5Authors.values())
 plt.xlabel('Author Name')
 plt.ylabel('No. of Commits')
-plt.title('TOP CONTRIBUTORS')
+plt.title('TOP CONTRIBUTORS - TEST FILES')
 plt.savefig('author_count.png')
 plt.show()
 plt.close()
