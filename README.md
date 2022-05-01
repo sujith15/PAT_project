@@ -20,11 +20,11 @@ make -j8 all
 ````
 make check
 ````
-* To generate coverage report in form of CSV file, we used below command
+* To generate coverage report in form of CSV file, we used the below command
 ````commandline
 gcovr --gcov-executable gcov-11 --gcov-ignore-parse-errors --csv -o report.csv
 ````
-* To generate coverage report in form of HTML file, we used below com
+* To generate coverage report in form of HTML file, we used the below command
 ````commandline
 gcovr --gcov-executable gcov-11 --gcov-ignore-parse-errors --html -o reporthtml.csv
 ````
