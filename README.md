@@ -4,14 +4,30 @@
 
 This project aims to practice building and testing large Open MPI project, and analyzing the project and providing assessment of testing.
 
-Here are the commands we used to build and get the coverage from the OpenMPI project
-
+### **Setup & Build Instructions:**
+* Below are the two commands used to configure the project before building it
+````
 ./configure CC=gcc-11 CXX=g++-11
+````
+````
 ./configure CC=gcc-11 CXX=g++-11 --enable-coverage
+````
+* To build and execute all commands for the target, we used the below command
+````
 make -j8 all
-make check (-- we can check the gcno and gcda files are generated in the test folder)
-gcovr --gcov-executable gcov-11 --gcov-ignore-parse-errors --csv -o report.csv (CSV report is generated)
-gcovr --gcov-executable gcov-11 --gcov-ignore-parse-errors --html -o reporthtml.csv (Html report is generated)
- 
+````
+* Below command is used to run test suite. After running this, .gcno & .gcda files will be generated in test folder
+````
+make check
+````
+* To generate coverage report in form of CSV file, we used below command
+````commandline
+gcovr --gcov-executable gcov-11 --gcov-ignore-parse-errors --csv -o report.csv
+````
+* To generate coverage report in form of HTML file, we used below com
+````commandline
+gcovr --gcov-executable gcov-11 --gcov-ignore-parse-errors --html -o reporthtml.csv
+````
+
 
 
