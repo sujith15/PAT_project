@@ -15,7 +15,7 @@ authorCommitCount = {}
 yearCommitCount = {}
 for commit in Repository('https://github.com/open-mpi/ompi',filepath='test').traverse_commits():
     for file in commit.modified_files:
-        if file.filename.endswith('.c') and file.filename not in files:
+        if file.filename in test_files and file.filename not in files:
             files.append(file.filename)
             count = count + 1
             d[file.filename] = [[], [], [0], [0]]
