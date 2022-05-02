@@ -26,7 +26,7 @@ gcovr --gcov-executable gcov-11 --gcov-ignore-parse-errors --csv -o report.csv
 ````
 * To generate coverage report in form of HTML file, we used the below command
 ````commandline
-gcovr --gcov-executable gcov-11 --gcov-ignore-parse-errors --html -o reporthtml.csv
+gcovr --gcov-executable gcov-11 --gcov-ignore-parse-errors --html -o reporthtml.html
 ````
 
 
